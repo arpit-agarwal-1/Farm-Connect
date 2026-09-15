@@ -1,0 +1,153 @@
+<app-navbar></app-navbar>
+
+<div class="main-wrapper" [class.blur]="loading">
+  <div class="header-section">
+    <div>
+      <h1 class="main-title">Livestock Inventory</h1>
+      <p class="sub-title">Manage and monitor your farm animals' health and status.</p>
+    </div>
+  </div>
+
+  <div class="toolbar-card">
+    <div class="search-box">
+      <mat-icon>search</mat-icon>
+      <input type="text" class="custom-search" (input)="onSearch($event)"
+        placeholder="Search by name, breed, or location...">
+    </div>
+
+    <div class="filter-group">
+      <select class="filter-dropdown" (change)="applyHealthFilter($event)">
+        <option value="">All Health Conditions</option>
+        <option value="Healthy">Healthy</option>
+        <option value="Sick">Sick</option>
+        <option value="In Treatment">In Treatment</option>
+      </select>
+
+      <select class="filter-dropdown" (change)="applyVaccinationFilter($event)">
+        <option value="">All Vaccination Status</option>
+        <option value="Vaccinated">Vaccinated</option>
+        <option value="Not Vaccinated">Not Vaccinated</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="table-container shadow-sm">
+    <mat-progress-bar *ngIf="loading" mode="indeterminate" color="primary"></mat-progress-bar>
+    <table mat-table [dataSource]="displayedLivestock" class="custom-table" matSort (matSortChange)="sortData($event)">
+
+      <ng-container matColumnDef="sno">
+        <th mat-header-cell *matHeaderCellDef> S.No. </th>
+        <td mat-cell *matCellDef="let element; let i = index">
+          {{ (pageIndex * pageSize) + i + 1 }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+        <td mat-cell *matCellDef="let element" class="font-medium">
+          {{element.name}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="species">
+        <th mat-header-cell *matHeaderCellDef> Species </th>
+        <td mat-cell *matCellDef="let element"> {{element.species}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="breed">
+        <th mat-header-cell *matHeaderCellDef> Breed </th>
+        <td mat-cell *matCellDef="let element"> {{element.breed}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="healthCondition">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Health </th>
+        <td mat-cell *matCellDef="let element">
+          <span class="badge" [ngClass]="{
+            'bg-success': element.healthCondition === 'Healthy',
+            'bg-danger': element.healthCondition === 'Sick',
+            'bg-warning': element.healthCondition === 'In Treatment'
+          }">
+            {{element.healthCondition}}
+          </span>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="vaccinationStatus">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Vaccination </th>
+        <td mat-cell *matCellDef="let element">
+          <span class="status-dot"
+            [ngClass]="element.vaccinationStatus === 'Vaccinated' ? 'dot-green' : 'dot-red'"></span>
+          {{element.vaccinationStatus}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let element">
+          <div class="action-buttons">
+            <button class="icon-btn view"
+              (click)="openAttachmentDialog(attachmentDialog, element.attachment, element.name)" title="View Details">
+              <span class="material-icons">visibility</span>
+            </button>
+            <button class="icon-btn edit" (click)="editLivestock(element._id)" title="Edit">
+              <span class="material-icons">edit</span>
+            </button>
+            <button class="icon-btn delete" (click)="openDeleteDialog(deleteDialog, element._id)" title="Delete">
+              <span class="material-icons">delete</span>
+            </button>
+          </div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="age">
+        <th mat-header-cell *matHeaderCellDef> Age </th>
+        <td mat-cell *matCellDef="let element">{{element.age}}</td>
+      </ng-container>
+      <ng-container matColumnDef="location">
+        <th mat-header-cell *matHeaderCellDef> Location </th>
+        <td mat-cell *matCellDef="let element">{{element.location}}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="table-row"></tr>
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell empty-msg" colspan="8" style="text-align: center; padding: 20px;">
+          No Livestock Available.
+        </td>
+      </tr>
+    </table>
+
+    <mat-paginator [length]="filteredLivestock.length" [pageSize]="pageSize" [pageIndex]="pageIndex"
+      [pageSizeOptions]="[5, 10,15, 25]" (page)="onPage($event)">
+    </mat-paginator>
+  </div>
+</div>
+
+<app-footer></app-footer>
+
+<ng-template #attachmentDialog>
+  <h2 mat-dialog-title class="dialog-title">Livestock Details: {{selectedLivestockName}}</h2>
+  <mat-dialog-content class="dialog-content">
+    <div class="attachment-preview">
+      <img *ngIf="selectedAttachment" [src]="selectedAttachment" alt="Livestock Attachment">
+      <div *ngIf="!selectedAttachment" class="no-attachment">
+        <mat-icon>image_not_supported</mat-icon>
+        <p>No medical records or images attached for this animal.</p>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-raised-button color="primary" mat-dialog-close>Close</button>
+  </mat-dialog-actions>
+</ng-template>
+
+<ng-template #deleteDialog>
+  <h2 mat-dialog-title class="dialog-title delete-title">Confirm Removal</h2>
+  <mat-dialog-content>
+    <p>Are you sure you want to delete this livestock record? This action cannot be undone.</p>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-raised-button color="warn" (click)="confirmDelete()">Delete Record</button>
+  </mat-dialog-actions>
+</ng-template>

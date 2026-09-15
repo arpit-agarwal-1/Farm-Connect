@@ -1,0 +1,93 @@
+<app-navbar></app-navbar>
+<div class="container" [class.blur]="loading">
+  <h2 class="page-title">My Requests</h2>
+
+  <div class="search-container">
+    <mat-form-field class="search-field">
+      <input matInput (keyup)="onSearch($event)" placeholder="Search by Feed Name...">
+    </mat-form-field>
+  </div>
+
+  <div class="mat-elevation-z2 table-container">
+    <mat-progress-bar *ngIf="loading" mode="indeterminate" color="primary"></mat-progress-bar>
+    <table mat-table [dataSource]="displayedRequests" matSort (matSortChange)="sortData($event)">
+
+      <ng-container matColumnDef="sno">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let r" >
+         <strong>{{ r._id}}</strong> 
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Feed Name </th>
+        <td mat-cell *matCellDef="let r"> {{r.feedId?.feedName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="livestock">
+        <th mat-header-cell *matHeaderCellDef> Livestock </th>
+        <td mat-cell *matCellDef="let r"> {{r.livestockId?.name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Quantity </th>
+        <td mat-cell *matCellDef="let r"> {{r.quantity}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <td mat-cell *matCellDef="let r">
+          <span [class.status-rejected]="r.status === 'Rejected'">{{r.status}}</span>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Request Date </th>
+        <td mat-cell *matCellDef="let r"> {{r.requestDate | date:'dd/MM/yyyy'}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Action </th>
+        <td mat-cell *matCellDef="let r">
+          <button mat-flat-button class="delete-btn" [disabled]="r.status !== 'Pending'"
+            (click)="openDeleteConfirm(r, deleteDialog)">
+            Delete
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell empty-msg" colspan="8" style="text-align: center; padding: 20px;">
+          No requests found in the barn.
+        </td>
+      </tr>
+    </table>
+
+    <!-- <div class="custom-pagination">
+      <button class="pag-btn" (click)="prevPage()" [disabled]="currentPage === 1">Prev</button>
+      <span class="page-info">Page {{currentPage}} of {{totalPages}}</span>
+      <button class="pag-btn" (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+    </div> -->
+
+    <mat-paginator [length]="filteredRequests.length" [pageSize]="pageSize" [pageIndex]="pageIndex"
+      [pageSizeOptions]="[5, 10, 25, 100]" (page)="onPage($event)">
+    </mat-paginator>
+  </div>
+</div>
+
+<app-footer></app-footer>
+
+<ng-template #deleteDialog let-data>
+  <h2 mat-dialog-title class="farm-title">Confirm Action</h2>
+  <mat-dialog-content>
+    Are you sure you want to delete this request?
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-raised-button color="warn" (click)="confirmDelete(data._id)">Yes, Delete</button>
+  </mat-dialog-actions>
+</ng-template>

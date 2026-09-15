@@ -1,0 +1,400 @@
+/* Container */
+.fc-container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Topbar */
+.fc-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: #ffffffec;
+  border-bottom: 1px solid var(--fc-border);
+  backdrop-filter: blur(6px);
+  transition: box-shadow .18s ease, border-color .18s ease, background-color .18s ease;
+}
+.fc-topbar.elevated {
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.08);
+  border-color: rgba(0,0,0,0.06);
+}
+
+/* Brand */
+.fc-brand {
+  display: inline-flex; align-items: center; gap: 8px;
+  text-decoration: none; color: var(--fc-green-700);
+  font-weight: 800; letter-spacing: -0.2px; height: 60px;
+}
+.fc-brand-icon { color: var(--fc-green); }
+.fc-brand-text { font-size: 1rem; }
+
+/* Nav layout */
+.fc-nav { display: inline-flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+
+/* Tab look (icon + text + underline) */
+.fc-tab {
+  position: relative;
+  display: inline-flex; align-items: center; gap: 8px;
+  text-decoration: none;
+  font-weight: 700;
+  padding: 6px 0;
+  transition: color .18s ease, opacity .18s ease;
+}
+
+/* Active underline bar */
+.fc-underline {
+  position: absolute;
+  left: 0; right: 0;
+  height: 3px;
+  bottom: -14px;                 /* visually similar to your screenshot */
+  background: var(--fc-green-700);
+  border-radius: 999px;
+}
+
+/* Default (anonymous) gray text for normal links */
+.fc-nav a:not(.fc-btn):not(.fc-tab) {
+  text-decoration: none; color: var(--fc-muted);
+  font-weight: 600; position: relative; transition: color .18s ease;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.fc-nav a:not(.fc-btn):not(.fc-tab):hover { color: var(--fc-green); }
+
+/* Avatar button */
+.avatar-btn {
+  width: 34px; height: 34px; border-radius: 50%;
+  overflow: hidden; display: inline-flex; align-items: center; justify-content: center;
+  background: #f3f4f6; border: 1px solid #e5e7eb;
+}
+.avatar-btn img { width: 100%; height: 100%; object-fit: cover; }
+.avatar-fallback { font-weight: 800; color: var(--fc-green-700); font-size: 12px; }
+
+/* CTA button */
+.fc-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  border-radius: 9999px; border: 2px solid transparent;
+  font-weight: 700; text-decoration: none; cursor: pointer;
+  transition: background-color .18s, color .18s, border-color .18s,
+              transform .18s, box-shadow .18s, filter .18s;
+}
+.fc-btn mat-icon { font-size: 20px; width: 20px; height: 20px; }
+.fc-btn-sm { padding: 8px 14px; font-size: 0.9rem; }
+.fc-btn-primary {
+  background: linear-gradient(180deg, var(--fc-green) 0%, var(--fc-green-700) 100%);
+  color: #fff; box-shadow: var(--shadow-sm);
+}
+.fc-btn-primary:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); filter: saturate(1.05); }
+.fc-nav .fc-btn-primary mat-icon { color: #fff; }
+
+/* Mobile menu */
+.fc-menu-btn {
+  display: none; appearance: none; background: transparent; border: none;
+  padding: 8px; border-radius: 8px; cursor: pointer;
+}
+.fc-menu-btn:focus-visible { outline: 2px solid rgba(46,125,50,.55); outline-offset: 2px; }
+.fc-menu-line { display: block; width: 22px; height: 2px; background: #1f2937; margin: 4px 0; }
+
+@media (max-width: 768px) {
+  .fc-menu-btn { display: inline-flex; }
+  .fc-nav {
+    position: absolute; top: 60px; right: 0; left: 0; display: none;
+    flex-direction: column; gap: 12px; background: #fff;
+    border-bottom: 1px solid var(--fc-border); padding: 12px 16px 16px;
+  }
+  .fc-nav.open { display: flex; }
+}
+
+/* ——— Owner & Supplier: all links BLACK (matching your screenshot) ——— */
+.fc-topbar.role-owner .fc-tab,
+.fc-topbar.role-owner .fc-nav a:not(.fc-btn):not(.fc-tab),
+.fc-topbar.role-supplier .fc-tab,
+.fc-topbar.role-supplier .fc-nav a:not(.fc-btn):not(.fc-tab) {
+  color: #000 !important;
+}
+.fc-topbar.role-owner .fc-tab:hover,
+.fc-topbar.role-supplier .fc-tab:hover {
+  color: #000 !important;
+  opacity: .85;
+}
+
+/* Optional: when inactive, dim slightly (like your image) */
+.fc-topbar.role-owner .fc-tab.muted,
+.fc-topbar.role-supplier .fc-tab.muted {
+  color: #111 !important;
+  opacity: .9;
+}
+
+
+/* TAB: icon + text + underline support */
+.fc-tab {
+  position: relative;                    /* critical for underline */
+  display: inline-flex; align-items: center; gap: 8px;
+  text-decoration: none;
+  font-weight: 700;
+  padding: 6px 0;                        /* create space above underline */
+  transition: color .18s ease, opacity .18s ease;
+}
+
+/* Active underline like in the screenshot */
+.fc-underline {
+  position: absolute;
+  left: 0; right: 0;
+  height: 3px;
+  bottom: -14px;                         /* visually below the tab text */
+  background: var(--fc-green-700);
+  border-radius: 999px;
+}
+
+/* Owner & Supplier: links BLACK */
+.fc-topbar.role-owner .fc-tab,
+.fc-topbar.role-owner .fc-nav a:not(.fc-btn):not(.fc-tab),
+.fc-topbar.role-supplier .fc-tab,
+.fc-topbar.role-supplier .fc-nav a:not(.fc-btn):not(.fc-tab) {
+  color: #000 !important;                /* enforce black */
+}
+
+.fc-topbar.role-owner .fc-tab:hover,
+.fc-topbar.role-supplier .fc-tab:hover {
+  color: #000 !important;
+  opacity: .85;
+}
+
+/* Optional: when not active, dim slightly (as in image) */
+.fc-topbar.role-owner .fc-tab.muted,
+.fc-topbar.role-supplier .fc-tab.muted {
+  color: #111 !important;
+  opacity: .9;
+}
+
+/* For anonymous, keep your gray rule for non-CTA, non-tab links */
+.fc-topbar.role-anon .fc-nav a:not(.fc-btn):not(.fc-tab) {
+  color: var(--fc-muted);
+}
+.fc-topbar.role-anon .fc-nav a:not(.fc-btn):not(.fc-tab):hover {
+  color: var(--fc-green);
+}
+
+
+/* --- Right nav: anchors + Material buttons (smaller & grayish) --- */
+.fc-nav > a:not(.fc-btn),
+.fc-nav > button.mat-mdc-button {
+  /* typography */
+  font-size: 0.875rem;            /* 14px */
+  font-weight: 600;               /* slightly lighter than bold */
+  line-height: 1.2;
+  text-transform: none;
+  color: #6b7280;                 /* gray-600 */
+
+  /* spacing / sizing */
+  min-width: 0;
+  padding: 0;                     /* strip extra button paddings */
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Make the inner label (for mat-button) align nicely */
+.fc-nav > button.mat-mdc-button .mdc-button__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 0;                 /* slight vertical breathing */
+}
+
+/* Icons follow text size & color */
+.fc-nav > a:not(.fc-btn) mat-icon,
+.fc-nav > button.mat-mdc-button mat-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+  line-height: 18px;
+  color: inherit;                 /* keep icon color in sync with text */
+}
+
+/* Caret on dropdown triggers a bit subtler */
+.fc-nav > button.mat-mdc-button .caret {
+  font-size: 18px;
+  opacity: .75;
+  margin-left: 4px;
+}
+
+/* Hover: remain grayish, slightly darker for a refined Material feel */
+.fc-nav > a:not(.fc-btn):hover,
+.fc-nav > button.mat-mdc-button:hover {
+  color: #4b5563;                 /* gray-700 */
+}
+
+/* Keep CTA pill (Get Started) bright white-on-green */
+.fc-nav .fc-btn.fc-btn-primary,
+.fc-nav .fc-btn.fc-btn-primary mat-icon {
+  color: #fff;
+}
+
+/* If you use 'tab' anchors with the green underline, keep them compact too */
+.fc-nav > a.fc-tab {
+  font-size: 0.875rem;
+  font-weight: 700;               /* tabs can stay slightly stronger */
+  padding: 4px 0;
+}
+.fc-nav > a.fc-tab .fc-underline {
+  height: 2px;                    /* slightly thinner underline for compactness */
+  bottom: -12px;
+}
+
+/* Role overrides (optional): if you previously forced black for owner/supplier,
+   this ensures the right side stays grayish & small as requested. */
+.fc-topbar.role-owner .fc-nav > a:not(.fc-btn),
+.fc-topbar.role-owner .fc-nav > button.mat-mdc-button,
+.fc-topbar.role-supplier .fc-nav > a:not(.fc-btn),
+.fc-topbar.role-supplier .fc-nav > button.mat-mdc-button {
+  color: #6b7280 !important;      /* override earlier black */
+}
+.fc-topbar.role-owner .fc-nav > a:not(.fc-btn):hover,
+.fc-topbar.role-owner .fc-nav > button.mat-mdc-button:hover,
+.fc-topbar.role-supplier .fc-nav > a:not(.fc-btn):hover,
+.fc-topbar.role-supplier .fc-nav > button.mat-mdc-button:hover {
+  color: #4b5563 !important;
+}
+/* --- Navigation Layout --- */
+.fc-nav { 
+  display: inline-flex; 
+  align-items: center; 
+  gap: 20px; /* Increased gap for a cleaner look */
+}
+
+/* --- Unified Right Nav Style (Links & Mat-Buttons) --- */
+.fc-nav > a:not(.fc-btn),
+.fc-nav > button.mat-mdc-button {
+  /* Typography */
+  font-size: 0.875rem;            /* 14px */
+  font-weight: 600;               /* Semi-bold for readability */
+  color: #64748b;                 /* Slate-500 (Clean Gray) */
+  text-decoration: none;
+  
+  /* Reset Material Button defaults */
+  background: transparent !important;
+  padding: 0 4px !important;
+  min-width: 0 !important;
+  height: auto !important;
+  line-height: 1.2 !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color .2s ease;
+}
+
+/* Ensure the Material internal label aligns with flex */
+.fc-nav > button.mat-mdc-button .mdc-button__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Icons: Sync size and color */
+.fc-nav > a:not(.fc-btn) mat-icon,
+.fc-nav > button.mat-mdc-button mat-icon:not(.caret) {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+  color: #94a3b8; /* Lighter gray for icon */
+  transition: color .2s ease;
+}
+
+/* Dropdown Caret */
+.fc-nav .caret {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+  margin-left: -2px;
+  opacity: 0.6;
+}
+
+/* Hover States */
+.fc-nav > a:not(.fc-btn):hover,
+.fc-nav > button.mat-mdc-button:hover {
+  color: var(--fc-green-700); /* Highlight on hover */
+}
+.fc-nav > a:not(.fc-btn):hover mat-icon,
+.fc-nav > button.mat-mdc-button:hover mat-icon {
+  color: var(--fc-green);
+}
+
+/* --- Role Overrides (Owner/Supplier) --- 
+   This ensures that even in "Owner" mode, the right-side 
+   utility links stay refined and gray, not forced to black. */
+.fc-topbar.role-owner .fc-nav > a:not(.fc-btn):not(.fc-tab),
+.fc-topbar.role-supplier .fc-nav > a:not(.fc-btn):not(.fc-tab),
+.fc-topbar.role-owner .fc-nav > button.mat-mdc-button,
+.fc-topbar.role-supplier .fc-nav > button.mat-mdc-button {
+  color: #64748b !important; 
+}
+
+/* --- CTA Pill (Get Started) --- */
+.fc-btn-primary {
+  padding: 8px 18px;
+  background: var(--fc-green-700);
+  color: #fff !important;
+  border-radius: 999px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(22, 101, 52, 0.15);
+}
+.fc-btn-primary mat-icon {
+  color: #fff !important;
+}
+
+/* --- Avatar Button --- */
+.avatar-btn {
+  width: 32px; 
+  height: 32px;
+  border: 2px solid #e2e8f0;
+  padding: 0 !important;
+  margin-left: 4px;
+}
+
+/* navbar2.component.css */
+
+@media (max-width: 768px) {
+  .fc-nav {
+    position: absolute; 
+    top: 60px; 
+    right: 0; 
+    left: 0; 
+    display: none;
+    flex-direction: column; 
+    gap: 12px; 
+    background: #fff;
+    border-bottom: 1px solid var(--fc-border); 
+    padding: 12px 16px 16px;
+    z-index: 1001; /* Ensure it stays above other content */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); /* Add shadow so it looks like it's over the page */
+  }
+
+  .fc-nav.open { 
+    display: flex !important; 
+  }
+}
+
+
+@media (max-width: 768px) {
+  .fc-menu-btn {
+    display: flex;
+    background: transparent;
+    border: none;
+    color: black;
+    padding: 8px;
+    cursor: pointer;
+  }
+  
+  .fc-menu-btn mat-icon {
+    font-size: 28px;
+    width: 28px;
+    height: 28px;
+  }
+  
+  /* Hide the old line class if you use mat-icon */
+  .fc-menu-line { display: none; }
+}

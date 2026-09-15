@@ -1,0 +1,54 @@
+<div class="login-container">
+  <mat-card class="login-card">
+
+    <div class="farm-header">
+      <div class="logo-wrapper">
+        <mat-icon class="header-icon">agriculture</mat-icon>
+      </div>
+      <h1 class="farm-title">Farm Connect</h1>
+      <p class="farm-subtitle">Welcome back to the farm</p>
+    </div>
+
+    <mat-card-content>
+      <div *ngIf="error" class="alert-error">{{ error }}</div>
+
+      <form #f="ngForm" (ngSubmit)="onLogin(f)">
+
+        <mat-form-field appearance="outline" class="full-width" subscriptSizing="dynamic">
+          <mat-label>Email Address</mat-label>
+          <input matInput type="email" name="email" [(ngModel)]="formData.email" required email #email="ngModel">
+          <mat-icon matPrefix class="field-icon">mail_outline</mat-icon>
+          <mat-error *ngIf="email.errors?.['required']">Email is required</mat-error>
+          <mat-error *ngIf="email.errors?.['email']">Please enter a valid email</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width" subscriptSizing="dynamic">
+          <mat-label>Password</mat-label>
+          <input matInput [type]="hidePassword ? 'password' : 'text'" name="password" [(ngModel)]="formData.password"
+            required minlength="6" #pass="ngModel">
+
+          <mat-icon matPrefix class="field-icon">lock_open</mat-icon>
+
+          <button mat-icon-button matSuffix type="button" (click)="hidePassword = !hidePassword"
+            class="eye-icon-button">
+            <mat-icon class="eye-icon">{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+
+          <mat-error *ngIf="pass.errors?.['required']">Password is required</mat-error>
+          <mat-error *ngIf="pass.errors?.['minlength']">Password must be at least 6 characters</mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button class="submit-btn full-width" [disabled]="submitting" type="submit">
+          {{ submitting ? 'GROWING...' : 'LOGIN' }}
+        </button>
+
+
+        <div class="footer-links">
+          <p>Don't have an account? <a routerLink="/signup">Sign Up</a></p>
+          <a routerLink="/forgot-password" class="forgot-link" style="display: block; margin-top: 8px;">Forgot
+            Password?</a>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

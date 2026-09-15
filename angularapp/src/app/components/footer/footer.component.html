@@ -1,0 +1,57 @@
+<footer class="df-footer">
+    <div class="df-container">
+      <div class="footer-grid">
+        
+       
+        <div class="brand-column">
+           <mat-icon class="brand-icon">agriculture</mat-icon>
+          <span class="brand-logo">FARM CONNECT</span>
+          <p class="brand-desc">
+             Empowering the agricultural ecosystem by connecting livestock owners 
+            with premium feed suppliers. Manage, request, and grow your farm in one place.
+          </p>
+  
+          <div class="social-row">
+            <a *ngFor="let s of socials"  class="social-btn">
+              <mat-icon>{{ s.icon }}</mat-icon>
+            </a>
+          </div>
+          <!-- <div class="contact-info">
+            <div class="contact-item">
+              <mat-icon>email</mat-icon>
+              <span>support@farmconnect.com</span>
+            </div>
+            <div class="contact-item">
+              <mat-icon>phone</mat-icon>
+              <span>+1 (800) 374-8334</span>
+            </div>
+            <div class="contact-item">
+              <mat-icon>location_on</mat-icon>
+              <span>Bengaluru, India</span>
+            </div>
+          </div> -->
+        </div>
+  
+        <div *ngFor="let group of footerGroups">
+          <p class="link-header">{{ group.category }}</p>
+          <div class="link-list">
+            <a *ngFor="let link of group.links" class="footer-link">
+              {{ link.label }}
+            </a>
+          </div>
+        </div>
+  
+      </div>
+  
+      <div class="footer-bottom">
+        <p class="copyright">
+           © 2026 Farm Connect Platform. Bridging the gap in agricultural supply chains.
+        </p>
+        <div class="bottom-nav">
+          <a>Privacy</a>
+          <a>Terms</a>
+          <a>About</a>
+        </div>
+      </div>
+    </div>
+  </footer>

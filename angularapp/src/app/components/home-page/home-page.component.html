@@ -1,0 +1,99 @@
+<app-navbar></app-navbar>
+<section class="home-wrap">
+
+
+  <div class="container">
+    <div class="hero hero--compact">
+      <div class="hero-copy fade-in">
+        <h1>
+          The Direct Link Between <span class="accent">Farmers and Supplier</span>
+        </h1>
+        <p>
+          Seamlessly manage your livestock and procure high-quality nutrition from trusted suppliers. Our marketplace
+          bridges the gap between those who raise animals and those who provide the fuel to grow them.
+        </p>
+        <div class="cta">
+            <a routerLink="/signup" *ngIf="!loggedIn" class="btn btn-primary btn-lg with-icon">
+              Get Started <mat-icon>chevron_right</mat-icon>
+            </a>
+          <button class="btn btn-ghost btn-lg" routerLink="/learn-more">Learn More</button>
+        </div>
+      </div>
+
+      <div class="hero-media fade-in-delayed">
+        <div class="media-card">
+          <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=1000"
+            alt="Modern farm landscape" referrerpolicy="no-referrer" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="divider-line"></div>
+
+
+  <div class="container section">
+    <h2 class="section-title">Smart Tools for Your Farm</h2>
+    <p class="section-subtitle">
+      We’ve built a specialized ecosystem to streamline the way you manage animals and procure supplies..
+    </p>
+
+    <div class="features-grid">
+      <mat-card class="feature-card">
+        <div class="feature-icon"><mat-icon>monitor_heart</mat-icon></div>
+        <h3>Livestock Health</h3>
+        <p>Monitor vital signs and track health history for every animal in your care.</p>
+      </mat-card>
+
+      <mat-card class="feature-card">
+        <div class="feature-icon"><mat-icon>trending_up</mat-icon></div>
+        <h3>Direct Feed Marketplace</h3>
+        <p>Access a network of vetted suppliers. Browse premium feed options, compare nutritional values, and find the
+          right fuel for your livestock.</p>
+      </mat-card>
+
+      <mat-card class="feature-card">
+        <div class="feature-icon"><mat-icon>groups</mat-icon></div>
+        <h3>Instant Request Management</h3>
+        <p>Eliminate the guesswork. Owners send specific feed requests, while Suppliers review, approve, or reject
+          orders through a real-time notification system.
+        </p>
+      </mat-card>
+
+      <mat-card class="feature-card">
+        <div class="feature-icon"><mat-icon>notifications_active</mat-icon></div>
+        <h3>Supply Chain Logistics</h3>
+        <p>Stay ahead of your inventory. Track the status of every request from the moment it’s approved until the feed
+          arrives at your gate.
+        </p>
+      </mat-card>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="callout">
+      <div class="copy">
+        <h3>Bridging the Gap from Warehouse to Farm</h3>
+        <p class="muted">
+          Farm Connect is designed to simplify the professional relationship between livestock owners and feed
+          providers. We put transparency and efficiency at the heart of your operations.
+        </p>
+        <ul class="bullets">
+          <li><mat-icon>chevron_right</mat-icon><span>Real-time request tracking</span></li>
+          <li><mat-icon>chevron_right</mat-icon><span>Verified supplier network</span></li>
+          <li><mat-icon>chevron_right</mat-icon><span>Centralized livestock records</span></li>
+        </ul>
+        <a routerLink="/register" class="btn btn-accent btn-lg">Join the Community</a>
+      </div>
+      <div class="media">
+        <div class="blob"></div>
+        <img src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&q=80&w=800"
+          alt="Seedlings growing in pots" referrerpolicy="no-referrer" />
+      </div>
+    </div>
+  </div>
+
+
+  <app-footer></app-footer>
+</section>

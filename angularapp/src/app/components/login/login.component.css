@@ -1,0 +1,176 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.30), rgba(0, 0, 0, 0.30)),
+    url("https://images.pexels.com/photos/265216/pexels-photo-265216.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+.login-card {
+  max-width: 400px;
+  width: 90%;
+  padding: 30px;
+  border-radius: 12px;
+  background: rgb(255, 255, 255);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transform: scale(0.8);
+  transform-origin: center center;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.farm-header {
+  text-align: center;
+  margin-bottom: 25px;
+  border-bottom: 1px solid #f5f0e8;
+  padding-bottom: 6px;
+}
+
+.header-icon {
+  font-size: 45px;
+  height: 45px;
+  width: 45px;
+  color: var(--sage-green);
+  margin-bottom: 5px;
+  display: inline-block;
+}
+
+.farm-title {
+  font-family: 'Playfair Display', serif !important;
+  font-size: 3rem !important;
+  color: var(--forest-green);
+  margin: 0 !important;
+  line-height: 1 !important;
+  display: block;
+}
+
+.farm-subtitle {
+  font-family: 'Varela Round', sans-serif;
+  color: var(--sage-green);
+  font-size: 0.75rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-top: 6px !important;
+  display: block;
+  margin-bottom: 5px;
+}
+
+::ng-deep .mat-mdc-text-field-wrapper {
+  height: 40px !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+::ng-deep .mat-mdc-form-field {
+  --mat-form-field-container-height: 42px !important;
+  margin-bottom: 20px !important;
+}
+
+::ng-deep .mat-mdc-form-field-flex {
+  align-items: center !important;
+  height: 100% !important;
+}
+
+::ng-deep .mat-mdc-floating-label {
+  top: 19px !important;
+}
+
+::ng-deep .mat-mdc-form-field .mat-mdc-floating-label {
+  font-size: 14px !important;
+}
+
+
+::ng-deep .mat-mdc-form-field-appearance-outline .mdc-notched-outline__label {
+  top: 10px !important;
+}
+
+.field-icon {
+  color: var(--sage-green);
+  font-size: 20px !important;
+  width: 20px !important;
+  height: 20px !important;
+  display: flex !important;
+  align-items: center;
+  margin-right: 4px;
+}
+
+::ng-deep .mat-mdc-form-field-icon-suffix {
+  display: flex !important;
+  align-items: center !important;
+  height: 100% !important;
+  padding: 0 !important;
+}
+
+.eye-icon-button {
+  color: var(--sage-green);
+  width: 32px !important;
+  height: 32px !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-right: 4px;
+}
+
+.eye-icon-button mat-icon {
+  font-size: 20px !important;
+  width: 20px !important;
+  height: 20px !important;
+  transition: color 0.2s ease;
+}
+
+.eye-icon-button:hover {
+  color: var(--forest-green);
+}
+
+.submit-btn {
+  background-color: var(--forest-green) !important;
+  color: white !important;
+  height: 42px !important;
+  border-radius: 4px !important;
+  font-weight: 600;
+  margin-top: 15px;
+  text-transform: uppercase;
+  width: 100%;
+}
+
+.footer-links {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.85rem;
+}
+
+.footer-links a {
+  color: var(--sage-green);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+  color: var(--forest-green);
+}
+
+.alert-error {
+  background: #fef8ed;
+  color: #E65100;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  text-align: center;
+  /* font-weight: 600; */
+  font-size: 0.8rem;
+}
+
+.login-card,
+.login-card * {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

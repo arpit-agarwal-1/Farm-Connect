@@ -1,0 +1,265 @@
+
+/* --- Container & Layout --- */
+.desktop-scale-80 {
+  padding: 24px;
+  background-color: var(--fc-bg-body);
+  min-height: 100vh;
+}
+
+/* 80% scaling on large monitors */
+@media (min-width: 900px) {
+  .desktop-scale-80 {
+    zoom: 0.8; 
+  }
+}
+
+
+.management-header {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-bottom: 24px;
+  margin-bottom: 32px;
+}
+
+.management-header::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%; /* Adjust to 50% or 100px if you want a short accent line */
+  height: 2px;
+  background: linear-gradient(to right, var(--green-600), transparent);
+}
+.request-management-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  transition: filter 0.3s ease;
+}
+
+.request-management-container.blur {
+  filter: blur(4px);
+  pointer-events: none;
+}
+
+
+
+/* --- Header Section --- */
+/* .management-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+} */
+
+
+
+
+
+
+.farm-title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--forest-green);
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+.farm-subtitle {
+  color: var(--fc-text-muted);
+  font-size: 0.95rem;
+  margin: 4px 0 0 0;
+}
+
+/* Search Box Styling */
+.compact-search {
+  width: 300px;
+}
+
+::ng-deep .compact-search .mat-mdc-text-field-wrapper {
+  background-color: #fff !important;
+  height: 40px !important; /* Compact height */
+}
+
+.search-icon {
+  color: var(--fc-text-muted);
+  margin-right: 8px;
+}
+
+/* --- Table Card --- */
+.sturdy-table-card {
+  border-radius: 16px !important;
+  border: 1px solid var(--fc-border) !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05) !important;
+  overflow: hidden;
+}
+
+.mat-mdc-card-content {
+  padding: 0 !important;
+}
+
+/* --- The Table --- */
+.farm-table {
+  width: 100%;
+  background: transparent;
+}
+
+.mat-mdc-header-row {
+  background: var(--forest-green);
+  height: 56px;
+}
+
+.mat-mdc-header-cell {
+  color: var(--bg) !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  font-size: 0.75rem !important;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--fc-border) !important;
+}
+
+.mat-mdc-row {
+  transition: background-color 0.2s;
+  height: 60px;
+}
+
+.mat-mdc-row:hover {
+  background-color: var(--fc-primary-light);
+}
+
+.mat-mdc-cell {
+  color: var(--fc-text-main);
+  font-size: 0.9rem;
+  border-bottom: 1px solid var(--fc-border) !important;
+}
+
+.bold-text {
+  font-weight: 600;
+  color: var(--fc-primary-dark);
+}
+
+/* --- Action Buttons (Edit/Delete) --- */
+.action-cell {
+  min-width: 180px;
+}
+
+.btn-group {
+  display: flex;
+  gap: 8px;
+}
+
+/* Custom small buttons for Feeds table */
+.small-btn {
+  border: none;
+  padding: 6px 14px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.small-btn:hover {
+  opacity: 0.9;
+}
+
+.btn-approve {
+  background-color: var(--fc-primary) !important;
+  color: white !important;
+  border-radius: 8px !important;
+}
+
+.btn-reject {
+  background-color: #fff !important;
+  color: #ef4444 !important;
+  border: 1px solid #fee2e2 !important;
+  border-radius: 8px !important;
+}
+
+/* --- Paginator (Items per page left, Controls right) --- */
+.mat-mdc-paginator {
+  background: transparent !important;
+  border-top: 1px solid var(--fc-border);
+  color: var(--fc-text-muted);
+}
+
+::ng-deep .mat-mdc-paginator-container {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 0 16px !important;
+}
+
+::ng-deep .mat-mdc-paginator-page-size {
+  margin-right: auto !important; /* Forces items per page to left */
+}
+
+::ng-deep .mat-mdc-paginator-range-actions {
+  margin-left: auto !important; /* Forces range and arrows to right */
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+  .management-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .compact-search {
+    width: 100%;
+  }
+
+  .sturdy-table-card {
+    overflow-x: auto;
+  }
+
+  .farm-table {
+    min-width: 800px;
+  }
+
+  .desktop-scale-80 {
+    padding: 12px;
+  }
+}
+
+/* Empty Message Styling */
+.empty-msg {
+  color: var(--fc-text-muted);
+  font-weight: 500;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Scrollbar Styling for horizontal scrolling */
+.sturdy-table-card::-webkit-scrollbar {
+  height: 6px;
+}
+.sturdy-table-card::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+
+.btn-group {
+  display: flex;
+  gap: 8px;
+}
+
+.small-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.small-btn span { font-size: 18px; }
+
+.small-btn.edit:hover { color: #f59e0b; border-color: #f59e0b; background: #fffbeb; }
+.small-btn.delete:hover { color: #ef4444; border-color: #ef4444; background: #fef2f2; }

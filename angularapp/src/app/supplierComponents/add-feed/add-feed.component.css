@@ -1,0 +1,279 @@
+.add-feed-wrap {
+    min-height: calc(100vh - 72px);
+    padding: 18px 12px;
+    display: flex;
+    justify-content: center;
+    background: radial-gradient(900px 380px at 15% 0%, rgba(46,125,50,.08), transparent 55%),
+                var(--fc-bg);
+  }
+  
+  /* smaller card */
+  .feed-card {
+    width: 100%;
+    max-width: 680px;
+    border-radius: 14px;
+    border: 1px solid var(--fc-border);
+    background: var(--fc-surface);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+  }
+  
+  /* banner */
+  .banner {
+    position: relative;
+    height: 120px;
+    background: var(--fc-primary-light);
+  }
+  
+  .banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: saturate(1.05);
+  }
+  
+  .banner-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(11,92,15,.85), rgba(11,92,15,.25));
+  }
+  
+  .banner-content {
+    position: absolute;
+    inset: 0;
+    padding: 12px 14px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+    color: #fff;
+  }
+  
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.16);
+    border: 1px solid rgba(255,255,255,.25);
+    font-size: 12px;
+    line-height: 1;
+  }
+  
+  .chip mat-icon {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+  }
+  
+  .titles {
+    flex: 1;
+    margin-left: 6px;
+  }
+  
+  .page-title {
+    font-weight: 700;
+    letter-spacing: .2px;
+    font-size: 18px;  /* smaller */
+    line-height: 1.1;
+  }
+  
+  .page-sub {
+    font-size: 12px;
+    opacity: .9;
+    margin-top: 4px;
+  }
+  
+  .mini-back {
+    height: 32px !important;
+    border-radius: 10px !important;
+    color: #fff !important;
+    border-color: rgba(255,255,255,.35) !important;
+    background: rgba(255,255,255,.10) !important;
+  }
+  
+  .mini-back mat-icon {
+    margin-right: 4px;
+  }
+  
+  /* content smaller padding */
+  .content {
+    padding: 14px;
+  }
+  
+  /* compact layout */
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  /* 2-col grid for compactness */
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  
+  @media (max-width: 640px) {
+    .grid { grid-template-columns: 1fr; }
+  }
+  
+  /* reduce field spacing */
+  .compact {
+    margin-bottom: 0 !important;
+  }
+  
+  /* smaller submit */
+  .submit-mini {
+    height: 40px !important;
+    border-radius: 12px !important;
+    box-shadow: var(--shadow-sm) !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  
+  /* dialog look */
+  .dlg-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--fc-primary-dark);
+  }
+  .dlg-ic { color: var(--fc-primary); }
+  /* overall scale-down */
+  .feed-card {
+    max-width: 540px; /* was ~680 */
+    box-shadow: var(--shadow-sm);
+  }
+  
+  /* banner smaller */
+  .banner {
+    height: 96px; /* was 120 */
+  }
+  
+  /* banner spacing */
+  .banner-content {
+    padding: 8px 10px;
+  }
+  
+  /* title sizing */
+  .page-title {
+    font-size: 14.5px; /* ↓ from ~18 */
+  }
+  
+  .page-sub {
+    font-size: 10.5px;
+  }
+  
+  /* chip smaller */
+  .chip {
+    padding: 4px 8px;
+    font-size: 10px;
+  }
+  
+  /* content padding reduced */
+  .content {
+    padding: 10px;
+  }
+  
+  /* tighter form spacing */
+  .form {
+    gap: 6px;
+  }
+  
+  /* grid gap reduced */
+  .grid {
+    gap: 8px;
+  }
+  
+  /* material field height reduced */
+  .mat-mdc-form-field {
+    --mat-form-field-container-height: 32px !important;
+    --mdc-filled-text-field-container-height: 32px !important;
+    font-size: 13px;
+  }
+  
+  /* input padding reduced */
+  .mat-mdc-text-field-wrapper {
+    padding: 0 8px !important;
+  }
+  
+  /* textarea compact */
+  textarea.mat-mdc-input-element {
+    line-height: 1.3;
+  }
+  
+  /* prefix icons smaller */
+  .mat-mdc-form-field mat-icon[matPrefix] {
+    font-size: 16px;
+  }
+  
+  /* submit button smaller */
+  .submit-mini {
+    height: 34px !important;
+    font-size: 13px;
+    border-radius: 10px !important;
+  }
+  
+  /* back button smaller */
+  .mini-back {
+    height: 28px !important;
+    font-size: 12px;
+    padding: 0 8px !important;
+  }
+  
+  /* dialog compact */
+  .dlg-title {
+    font-size: 16px;
+  }
+  
+  .dlg-content p {
+    font-size: 13px;
+  }
+  
+  
+  /* overall form-field height */
+  .mat-mdc-form-field {
+    --mat-form-field-container-height: 30px !important;
+    --mdc-filled-text-field-container-height: 30px !important;
+    font-size: 12.5px;
+  }
+  
+  /* input + select padding */
+  .mat-mdc-text-field-wrapper {
+    padding: 0 6px !important;
+  }
+  
+  /* label size */
+  .mat-mdc-floating-label {
+    font-size: 12px !important;
+  }
+  
+  /* input text */
+  .mat-mdc-input-element,
+  .mat-mdc-select-value {
+    font-size: 12.5px;
+    line-height: 1.2;
+  }
+  
+  /* textarea compact */
+  textarea.mat-mdc-input-element {
+    line-height: 1.25;
+  }
+  
+  /* prefix icons smaller */
+  .mat-mdc-form-field mat-icon[matPrefix] {
+    font-size: 15px;
+    margin-right: 4px;
+  }
+  
+  /* reduce spacing between fields */
+  .mat-mdc-form-field {
+    margin-bottom: 4px !important;
+  }
+  

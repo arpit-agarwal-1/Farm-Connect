@@ -1,0 +1,200 @@
+<header
+  class="fc-topbar"
+  [class.elevated]="elevated"
+  [class.role-owner]="role === 'owner'"
+  [class.role-supplier]="role === 'supplier'"
+  [class.role-anon]="role === 'anonymous'"
+>
+  <div class="fc-container">
+    <a class="fc-brand" routerLink="/home" aria-label="Go to Home">
+      <mat-icon class="fc-brand-icon" aria-hidden="true">agriculture</mat-icon>
+      <span class="fc-brand-text">Farm Connect</span>
+    </a>
+
+    <button class="fc-menu-btn" (click)="menuOpen = !menuOpen">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <nav class="fc-nav" [class.open]="menuOpen">
+      <ng-container *ngIf="role === 'anonymous'">
+        <a routerLink="/login" routerLinkActive="active" (click)="closeMenu()"
+          >Login</a
+        >
+        <a
+          routerLink="/signup"
+          routerLinkActive="active"
+          (click)="closeMenu()"
+          >Register</a
+        >
+        <a
+          routerLink="/signup"
+          class="fc-btn fc-btn-primary fc-btn-sm with-icon"
+          (click)="closeMenu()"
+        >
+          Get Started <mat-icon aria-hidden="true">chevron_right</mat-icon>
+        </a>
+      </ng-container>
+
+      <ng-container *ngIf="role === 'owner'">
+        <button
+          mat-button
+          class="fc-link"
+          [matMenuTriggerFor]="ownerLivestockMenu"
+        >
+          <mat-icon>pets</mat-icon>
+          Livestock
+        </button>
+        <mat-menu #ownerLivestockMenu="matMenu">
+          <button
+            mat-menu-item
+            routerLink="/add-livestock"
+            (click)="closeMenu()"
+          >
+            <mat-icon color="primary">add_circle</mat-icon>
+            <span>Add Livestock</span>
+          </button>
+          <button mat-menu-item routerLink="/view-livestock" (click)="closeMenu()">
+            <mat-icon>visibility</mat-icon>
+            <span>View Livestock</span>
+          </button>
+        </mat-menu>
+
+        <a routerLink="/owner-viewfeed" (click)="closeMenu()">
+          <mat-icon>restaurant</mat-icon>
+          Feed
+        </a>
+        <a routerLink="/my-request" (click)="closeMenu()">
+          <mat-icon>inbox</mat-icon>
+          My Requests
+        </a>
+
+        <!-- Person / account menu -->
+        <button
+          mat-icon-button
+          class="avatar-btn"
+          [matMenuTriggerFor]="accountMenu"
+          aria-label="Account"
+        >
+          <img *ngIf="user?.avatarUrl" [src]="user.avatarUrl" alt="Avatar" />
+          <span class="avatar-fallback" *ngIf="!user?.avatarUrl">{{
+            initials()
+          }}</span>
+        </button>
+        <mat-menu #accountMenu="matMenu" xPosition="before">
+          <div class="menu-header" mat-menu-item disabled>
+            <mat-icon>person</mat-icon>
+            <div class="u">
+              <div class="name">{{ userName || "User" }}</div>
+              <div class="email">{{ userEmail }}</div>
+              <div class="role">{{ role }}</div>
+            </div>
+          </div>
+          <mat-divider></mat-divider>
+          <button mat-menu-item routerLink="/" (click)="closeMenu()">
+            <mat-icon>badge</mat-icon>
+            <span>Profile</span>
+          </button>
+          <button mat-menu-item (click)="openLogoutConfirm()">
+            <mat-icon color="warn">logout</mat-icon>
+            <span>Logout</span>
+          </button>
+        </mat-menu>
+      </ng-container>
+
+      <!-- ============ Supplier ============ -->
+      <ng-container *ngIf="role === 'supplier'">
+        <!-- Feed dropdown -->
+        <button
+          mat-button
+          class="fc-link"
+          [matMenuTriggerFor]="supplierFeedMenu"
+        >
+          <mat-icon>restaurant</mat-icon>
+          Feed
+        </button>
+        <mat-menu #supplierFeedMenu="matMenu">
+          <button mat-menu-item routerLink="/add-feed" (click)="closeMenu()">
+            <mat-icon color="primary">add_circle</mat-icon>
+            <span>Add Feed</span>
+          </button>
+          <button mat-menu-item routerLink="/view-feed" (click)="closeMenu()">
+            <mat-icon>visibility</mat-icon>
+            <span>View Feed</span>
+          </button>
+        </mat-menu>
+
+        <a
+          routerLink="/view-request"
+          routerLinkActive="active"
+          (click)="closeMenu()"
+        >
+          <mat-icon>inbox</mat-icon>
+          Requests
+        </a>
+
+        <!-- Person / account menu -->
+        <button
+          mat-icon-button
+          class="avatar-btn"
+          [matMenuTriggerFor]="accountMenu2"
+          aria-label="Account"
+        >
+          <img *ngIf="user?.avatarUrl" [src]="user.avatarUrl" alt="Avatar" />
+          <span class="avatar-fallback" *ngIf="!user?.avatarUrl">{{
+            initials()
+          }}</span>
+        </button>
+        <mat-menu #accountMenu2="matMenu" xPosition="before">
+          <div class="menu-header" mat-menu-item disabled>
+            <mat-icon>person</mat-icon>
+            <div class="u">
+              <div class="name">{{ userName }}</div>
+              <div class="email">{{ userEmail }}</div>
+              <div class="role">{{ role }}</div>
+            </div>
+          </div>
+          <mat-divider></mat-divider>
+          <button mat-menu-item routerLink="/" (click)="closeMenu()">
+            <mat-icon>badge</mat-icon>
+            <span>Profile</span>
+          </button>
+          <button mat-menu-item (click)="openLogoutConfirm()">
+            <mat-icon color="warn">logout</mat-icon>
+            <span>Logout</span>
+          </button>
+        </mat-menu>
+      </ng-container>
+    </nav>
+  </div>
+</header>
+
+<ng-template #logoutDialog>
+  <h2 mat-dialog-title>
+    <mat-icon style="vertical-align: middle; margin-right: 6px"
+      >logout</mat-icon
+    >
+    Confirm Logout
+  </h2>
+
+  <mat-dialog-content>
+    <p>Are you sure you want to log out?</p>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+
+    <button mat-stroked-button type="button" [mat-dialog-close]="false">
+      <mat-icon>close</mat-icon>
+      Cancel
+    </button>
+
+    <button
+      mat-raised-button
+      color="warn"
+      type="button"
+      [mat-dialog-close]="true"
+    >
+      <mat-icon>logout</mat-icon>
+      Logout
+    </button>
+  </mat-dialog-actions>
+</ng-template>

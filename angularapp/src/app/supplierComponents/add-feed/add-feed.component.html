@@ -1,0 +1,107 @@
+<app-navbar></app-navbar>
+
+<div class="add-feed-wrap">
+  <mat-card class="feed-card">
+    <!-- small banner -->
+    <div class="banner">
+      <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=1200&auto=format&fit=crop" alt="Feed banner" />
+      <div class="banner-overlay"></div>
+
+      <div class="banner-content">
+        <div class="chip">
+          <mat-icon>{{ isEditMode ? 'edit' : 'eco' }}</mat-icon>
+          <span>{{ isEditMode ? 'Edit Mode' : 'New Feed' }}</span>
+        </div>
+
+        <div class="titles">
+          <div class="page-title">{{ isEditMode ? 'Edit Feed' : 'Add Feed' }}</div>
+          <div class="page-sub">{{ isEditMode ? 'Update feed details' : 'Create a new feed item' }}</div>
+        </div>
+
+        <button
+          *ngIf="isEditMode"
+          mat-stroked-button
+          color="primary"
+          class="mini-back"
+          type="button"
+          (click)="goBack()"
+        >
+          <mat-icon>arrow_back</mat-icon>
+          Back
+        </button>
+      </div>
+    </div>
+
+    <mat-card-content class="content">
+      <form [formGroup]="feedForm" (ngSubmit)="onSubmit(successDialog)" class="form">
+        <!-- row 1 -->
+        <div class="grid">
+          <mat-form-field appearance="outline" class="w-100 compact">
+            <mat-label>Feed Name</mat-label>
+            <mat-icon matPrefix>grass</mat-icon>
+            <input matInput formControlName="feedName" />
+            <mat-error *ngIf="feedForm.get('feedName')?.invalid">Required</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="w-100 compact">
+            <mat-label>Type</mat-label>
+            <mat-icon matPrefix>category</mat-icon>
+            <input matInput formControlName="type" />
+            <mat-error *ngIf="feedForm.get('type')?.invalid">Required</mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- row 2 -->
+        <div class="grid">
+          <mat-form-field appearance="outline" class="w-100 compact">
+            <mat-label>Unit</mat-label>
+            <mat-icon matPrefix>scale</mat-icon>
+            <mat-select formControlName="unit">
+              <mat-option value="kg">Kilogram</mat-option>
+              <mat-option value="ton">Ton</mat-option>
+              <mat-option value="bag">Bag</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="w-100 compact">
+            <mat-label>Price / Unit</mat-label>
+            <mat-icon matPrefix>currency_rupee</mat-icon>
+            <input matInput type="number" formControlName="pricePerUnit" />
+          </mat-form-field>
+        </div>
+
+        <!-- description -->
+        <mat-form-field appearance="outline" class="w-100 compact">
+          <mat-label>Description</mat-label>
+          <mat-icon matPrefix>notes</mat-icon>
+          <textarea matInput formControlName="description" rows="2"></textarea>
+          <mat-error *ngIf="feedForm.get('description')?.invalid">Required</mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit" class="submit-mini w-100">
+          <mat-icon>{{ isEditMode ? 'save' : 'add' }}</mat-icon>
+          {{ isEditMode ? 'Update Feed' : 'Add Feed' }}
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+ 
+</div>
+<app-footer></app-footer>
+
+
+
+<ng-template #successDialog>
+  <h2 mat-dialog-title class="dlg-title">
+    <mat-icon class="dlg-ic">check_circle</mat-icon>
+    Success
+  </h2>
+  <mat-dialog-content class="dlg-content">
+    <p>{{ isEditMode ? 'Feed Updated Successfully!' : 'Feed Added Successfully!' }}</p>
+  </mat-dialog-content>
+  <mat-dialog-actions align="center" class="dlg-actions">
+    <button mat-raised-button color="primary" (click)="closeDialog()">
+      <mat-icon>done</mat-icon> OK
+    </button>
+  </mat-dialog-actions>
+</ng-template>

@@ -1,0 +1,101 @@
+<div class="signup-container">
+  <mat-card class="signup-card">
+
+
+    <div class="farm-header">
+      <div class="logo-wrapper">
+        <mat-icon class="header-icon">agriculture</mat-icon>
+      </div>
+      <h1 class="farm-title">Sign Up</h1>
+      <p class="farm-subtitle">Create your farm account</p>
+    </div> 
+
+    <mat-card-content>
+      <div *ngIf="error" class="alert-error">{{ error }}</div>
+
+      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+        
+        <mat-form-field appearance="outline" class="full-width" subscriptSizing="dynamic">
+          <mat-label>User Name</mat-label>
+          <input matInput formControlName="userName" placeholder="Ex: John_Doe123">
+          <mat-icon matPrefix class="field-icon">person_outline</mat-icon>
+          <mat-error *ngIf="signupForm.get('userName')?.hasError('required')">User Name is required</mat-error>
+          <mat-error *ngIf="signupForm.get('userName')?.hasError('pattern')">Must start with a letter and contain no special characters</mat-error>
+          <mat-error *ngIf="!signupForm.get('userName')?.hasError('pattern') && signupForm.get('userName')?.hasError('minlength')">Minimum 3 characters required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width" subscriptSizing="dynamic">
+          <mat-label>Email Address</mat-label>
+          <input matInput formControlName="email" placeholder="john@example.com">
+          <mat-icon matPrefix class="field-icon">mail_outline</mat-icon>
+          <mat-error *ngIf="signupForm.get('email')?.hasError('required')">Email is required</mat-error>
+          <mat-error *ngIf="signupForm.get('email')?.hasError('pattern')">Enter a valid email address</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width" subscriptSizing="dynamic">
+          <mat-label>Mobile Number</mat-label>
+          <input matInput formControlName="mobile" placeholder="10-digit number">
+          <mat-icon matPrefix class="field-icon">phone_iphone</mat-icon>
+          <mat-error *ngIf="signupForm.get('mobile')?.hasError('required')">Mobile Number is required</mat-error>
+          <mat-error *ngIf="signupForm.get('mobile')?.hasError('pattern')">Enter 10 digit mobile number</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width" subscriptSizing="dynamic">
+          <mat-label>Password</mat-label>
+          <input matInput formControlName="password" [type]="hidePassword ? 'password' : 'text'" placeholder="Min 6 characters">
+          <mat-icon matPrefix class="field-icon">lock_open</mat-icon>
+
+          <button mat-icon-button matSuffix type="button" (click)="hidePassword = !hidePassword" class="eye-icon-button">
+            <mat-icon class="eye-icon">{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+
+          <mat-error *ngIf="signupForm.get('password')?.hasError('required')">Password is required</mat-error>
+          <mat-error *ngIf="signupForm.get('password')?.hasError('minlength')">Minimum 6 characters</mat-error>
+          <mat-error *ngIf="signupForm.get('password')?.hasError('pattern')">Password cannot contain spaces</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width" subscriptSizing="dynamic">
+          <mat-label>Confirm Password</mat-label>
+          <input matInput formControlName="confirmPassword" [type]="hideConfirmPassword ? 'password' : 'text'">
+          <mat-icon matPrefix class="field-icon">check_circle_outline</mat-icon>
+          <button mat-icon-button matSuffix type="button" (click)="hideConfirmPassword = !hideConfirmPassword" class="eye-icon-button">
+            <mat-icon class="eye-icon">{{hideConfirmPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+
+          <mat-error *ngIf="signupForm.get('confirmPassword')?.hasError('required')">Confirm Password is required</mat-error>
+          <mat-error *ngIf="signupForm.get('confirmPassword')?.hasError('mismatch')">Passwords do not match</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width" subscriptSizing="dynamic">
+          <mat-label>Select Role</mat-label>
+          <mat-select formControlName="role">
+            <mat-option value="owner">Owner</mat-option>
+            <mat-option value="supplier">Supplier</mat-option>
+          </mat-select>
+          <mat-icon matPrefix class="field-icon">assignment_ind</mat-icon>
+          <mat-error *ngIf="signupForm.get('role')?.hasError('required')">Role is required</mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button class="submit-btn" type="submit">
+          REGISTER ACCOUNT
+        </button>
+
+        <div class="footer-links">
+          <p>Already have an Account? <a routerLink="/login">Login</a></p>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<ng-template #successModal>
+  <div style="padding: 20px; text-align: center;">
+    <h2 class="farm-title" style="font-size: 2rem !important; margin-bottom: 10px;">Success!</h2>
+    <p class="farm-subtitle" style="text-transform: none; font-size: 1rem; color: #4A4A4A;">
+      User Registration is Successful!
+    </p>
+    <button mat-raised-button class="submit-btn" style="width: auto; padding: 0 40px; margin-top: 20px;" (click)="closeDialog()">
+      OK
+    </button>
+  </div>
+</ng-template>

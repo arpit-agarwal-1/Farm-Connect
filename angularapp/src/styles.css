@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com');
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
+
+:root {
+  --forest-green: #0b5c0f;
+  --sage-green: #519A66;
+  --harvest-gold: #FFAA00;
+  --wheat-cream: #FDF9F2;
+
+
+
+  --primary: #10b981;
+  /* Modern Emerald Green */
+  --primary-dark: #059669;
+  --bg-body: #f8fafc;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --border-color: #e2e8f0;
+  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+
+
+  
+  --fc-bg: #fafaf9;
+  --fc-surface: #ffffff;
+
+  --fc-green-50: #f1f8e9;
+  --fc-green-100: #dcedc8;
+  --fc-green: #2e7d32;
+  --fc-green-700: #1b5e20;
+
+  --fc-yellow: #f9a825;
+
+  --fc-text: #0f172a;
+  --fc-muted: #5b6575;
+  --fc-border: #e7e5e4;
+
+  --shadow-lg: 0 18px 40px rgba(15, 23, 42, 0.14);
+  --shadow-md: 0 10px 22px rgba(15, 23, 42, 0.12);
+  --shadow-sm: 0 6px 14px rgba(15, 23, 42, 0.08);
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+
+  --bg: #f5f7f5;
+  --surface: #ffffff;
+  --muted: #6b7280;
+  --text: #0f1724;
+  --green-600: #2f7a44;
+  --green-700: #235d31;
+  --accent: #eaf6ea;
+  --danger: #fdecec;
+  --card-border: #e9efea;
+  --shadow-lg: 0 8px 26px rgba(12, 18, 20, 0.06);
+  --shadow-sm: 0 4px 12px rgba(12, 18, 20, 0.04);
+  --radius-lg: 12px;
+  --radius-sm: 8px;
+
+
+  --fc-primary: #2e7d32;
+  --fc-primary-light: #e8f5e9;
+  --fc-primary-dark: #1b5e20;
+  --fc-text-main: #1e293b;
+  --fc-text-muted: #64748b;
+  --fc-border: #e2e8f0;
+  --fc-bg-body: #f8fafc;
+  
+  /* Status Colors */
+  --status-pending-bg: #fff7ed;
+  --status-pending-text: #c2410c;
+  --status-approved-bg: #f0fdf4;
+  --status-approved-text: #15803d;
+  --status-rejected-bg: #fef2f2;
+  --status-rejected-text: #b91c1c;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  /* font-family: 'Varela Round', sans-serif;  */
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  /* background-color: var(--wheat-cream); */
+  background: var(--fc-bg);
+  color: var(--fc-text);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #4A4A4A;
+  height: 100%;
+  margin: 0;
+  font-family: Inter, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--text);
+  -webkit-text-size-adjust: 100%;
+}
+
+.mat-mdc-form-field {
+  width: 100%;
+  margin-bottom: 8px;
+  --mat-form-field-container-height: 40px !important;
+  --mdc-filled-text-field-container-height: 40px !important;
+  --mdc-filled-text-field-container-shape: 4px;
+  --mdc-outlined-text-field-container-shape: 4px;
+}
+
+.mat-mdc-form-field .mdc-floating-label {
+  line-height: normal !important;
+}
+
+body .mat-mdc-text-field-wrapper {
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+}
+
+body .mat-mdc-form-field-focus-overlay {
+  background-color: transparent;
+}
+
+.mat-mdc-form-field.mat-focused {
+  --mdc-outlined-text-field-focus-outline-color: var(--forest-green);
+  --mdc-outlined-text-field-focus-label-text-color: var(--forest-green);
+  --mdc-filled-text-field-focus-active-indicator-color: var(--forest-green);
+  --mdc-filled-text-field-focus-label-text-color: var(--forest-green);
+}
+
+.farm-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.4rem;
+  color: var(--forest-green);
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.2;
+  letter-spacing: 0.5px;
+}
+
+.farm-subtitle {
+  font-family: 'Montserrat', sans-serif;
+  color: var(--sage-green);
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top: 5px;
+  font-weight: 700;
+}
+
+
+.mat-mdc-raised-button.mat-primary,
+.submit-btn {
+  background-color: var(--forest-green) !important;
+  color: white !important;
+  height: 40px !important;
+  border-radius: 4px !important;
+  font-family: 'Varela Round', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.submit-btn:hover {
+  background-color: var(--sage-green) !important;
+  opacity: 0.9;
+}
+
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(81, 154, 102, 0.3);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--forest-green);
+}
+
+/* body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+} */

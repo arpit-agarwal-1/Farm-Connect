@@ -1,0 +1,26 @@
+.error-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: var(--wheat-cream);
+  }
+  
+  .error-card {
+    max-width: 450px;
+    width: 90%;
+    text-align: center;
+    padding: 40px 20px !important;
+    border-radius: 12px !important;
+    background: white;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05) !important;
+  }
+  
+  .error-icon {
+    font-size: 80px !important;
+    width: 80px !important;
+    height: 80px !important;
+    color: var(--sage-green);
+    margin-bottom: 20px;
+  }
+  

@@ -1,0 +1,120 @@
+<nav>
+  <mat-toolbar class="fc-toolbar" role="navigation" aria-label="Primary">
+    <a class="fc-title" routerLink="/home" aria-label="FarmConnect Home">
+      <mat-icon class="fc-title-icon" aria-hidden="true">agriculture</mat-icon>
+      <span>FarmConnect</span>
+    </a>
+
+    <span class="fc-spacer"></span>
+
+
+    <mat-chip-set class="fc-role">
+      <mat-chip selected class="role-chip" aria-label="Role: Supplier">
+
+        {{userName}} / Supplier
+      </mat-chip>
+    </mat-chip-set>
+
+
+    <nav class="nav-desktop" aria-label="Main menu">
+      <a mat-button routerLink="/home" aria-label="Home">
+        <mat-icon aria-hidden="true">home</mat-icon>
+        <span>Home</span>
+      </a>
+
+      <button mat-button [matMenuTriggerFor]="feedMenu" aria-haspopup="true" aria-label="Feed menu">
+        <mat-icon aria-hidden="true">restaurant</mat-icon>
+        <span>Feed</span>
+      </button>
+
+      <mat-menu #feedMenu="matMenu">
+        <button mat-menu-item [routerLink]="'/add-feed'" aria-label="Add Feed">
+          <mat-icon>add_circle</mat-icon>
+          <span>Add Feed</span>
+        </button>
+        <button mat-menu-item [routerLink]="'/view-feed'" aria-label="View Feed">
+          <mat-icon>visibility</mat-icon>
+          <span>View Feed</span>
+        </button>
+      </mat-menu>
+
+      <a mat-button routerLink="/view-request" aria-label="View Request">
+        <mat-icon aria-hidden="true">assignment</mat-icon>
+        <span>Request</span>
+      </a>
+    </nav>
+
+
+    <button mat-raised-button color="warn" class="logout-btn" aria-label="Logout" (click)="openLogoutConfirm()">
+      <mat-icon aria-hidden="true">logout</mat-icon>
+      <span>Logout</span>
+    </button>
+
+
+    <button mat-icon-button class="menu-button" [matMenuTriggerFor]="mobileMenu" aria-label="Open menu">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+
+    <mat-menu #mobileMenu="matMenu" xPosition="before">
+      <button mat-menu-item routerLink="/home">
+        <mat-icon>home</mat-icon>
+        <span>Home</span>
+      </button>
+
+
+      <button mat-menu-item [matMenuTriggerFor]="mobileFeedMenu">
+        <mat-icon>restaurant</mat-icon>
+        <span>Feed</span>
+
+      </button>
+      <mat-menu #mobileFeedMenu="matMenu">
+        <button mat-menu-item routerLink="/livestock/add">
+          <mat-icon>add_circle</mat-icon>
+          <span>Add Feed</span>
+        </button>
+        <button mat-menu-item routerLink="/livestock/view">
+          <mat-icon>visibility</mat-icon>
+          <span>View Feed</span>
+        </button>
+      </mat-menu>
+
+
+      <button mat-menu-item routerLink="/view-request">
+        <mat-icon>assignment</mat-icon>
+        <span>Request</span>
+      </button>
+      <mat-divider></mat-divider>
+      <button mat-menu-item (click)="openLogoutConfirm()">
+        <mat-icon color="warn">logout</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
+  </mat-toolbar>
+</nav>
+
+
+<ng-template #logoutDialog>
+  <h2 mat-dialog-title>
+    <mat-icon style="vertical-align: middle; margin-right: 6px">logout</mat-icon>
+    Confirm Logout
+  </h2>
+
+  <mat-dialog-content>
+    <p>Are you sure you want to log out?</p>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+
+    <button mat-stroked-button type="button" [mat-dialog-close]="false">
+      <mat-icon>close</mat-icon>
+      Cancel
+    </button>
+
+
+    <button mat-raised-button color="warn" type="button" [mat-dialog-close]="true">
+      <mat-icon>logout</mat-icon>
+      Logout
+    </button>
+  </mat-dialog-actions>
+</ng-template>

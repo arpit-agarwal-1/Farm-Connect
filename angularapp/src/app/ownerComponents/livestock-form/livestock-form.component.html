@@ -1,0 +1,180 @@
+
+<app-navbar></app-navbar>
+<div class="form-wrapper">
+  <div class="form-card">
+    <div class="card-header">
+
+      <div class="header-left">
+        <span class="leaf-icon">🌿</span>
+        <h1 class="form-title">
+          {{ isEditMode ? 'Edit Livestock' : 'Add New Livestock' }}
+        </h1>
+      </div>
+
+      <button *ngIf="isEditMode" type="button" class="back-btn" (click)="router.navigate(['/view-livestock'])">
+        Back
+      </button>
+
+    </div>
+    <form [formGroup]="livestockForm" (ngSubmit)="onSubmit()" class="form-grid">
+
+      <div class="field-group">
+        <label for="name">Name</label>
+
+        <input class="form-input" type="text" formControlName="name" placeholder="e.g., Bessie"  id="name"/>
+
+        <div class="error-text" *ngIf="livestockForm.get('name')?.invalid && livestockForm.get('name')?.touched">
+          Name is required
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label for="species">Species</label>
+
+        <input class="form-input" type="text" formControlName="species" placeholder="Select Species"  id="species"/>
+
+        <div class="error-text" *ngIf="livestockForm.get('species')?.invalid && livestockForm.get('species')?.touched">
+          Species is required
+        </div>
+      </div>
+
+
+      <div class="field-group">
+        <label for="age">Age</label>
+
+        <input class="form-input" type="number" formControlName="age" placeholder="e.g., 2 years" id="age"/>
+
+        <div class="error-text" *ngIf="livestockForm.get('age')?.invalid && livestockForm.get('age')?.touched">
+          Age is required
+        </div>
+      </div>
+
+
+      <div class="field-group">
+        <label for="breed">Breed</label>
+
+        <input class="form-input" type="text" formControlName="breed" placeholder="e.g., Hereford" id="breed"/>
+
+        <div class="error-text" *ngIf="livestockForm.get('breed')?.invalid && livestockForm.get('breed')?.touched">
+          Breed is required
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label for="healthCondition">Health Condition</label>
+
+        <select class="form-input" formControlName="healthCondition" id="healthCondition">
+
+          <option value="">Select options</option>
+          <option value="Healthy">Healthy</option>
+          <option value="Sick">Sick</option>
+          <option value="In Treatment">In Treatment</option>
+
+        </select>
+
+        <div class="error-text"
+          *ngIf="livestockForm.get('healthCondition')?.invalid && livestockForm.get('healthCondition')?.touched">
+          Health Condition is required
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label for="location">Location</label>
+
+        <input class="form-input" type="text" formControlName="location" placeholder="e.g., North Pasture" id="location"/>
+
+        <div class="error-text"
+          *ngIf="livestockForm.get('location')?.invalid && livestockForm.get('location')?.touched">
+          Location is required
+        </div>
+      </div>
+
+
+      <div class="field-group">
+        <label for="vaccinationStatus">Vaccination Status</label>
+
+        <select class="form-input" formControlName="vaccinationStatus" id="vaccinationStatus">
+
+          <option value="">Select Vaccination Status</option>
+          <option value="Vaccinated">Vaccinated</option>
+          <option value="Not Vaccinated">Not Vaccinated</option>
+
+        </select>
+
+        <div class="error-text"
+          *ngIf="livestockForm.get('vaccinationStatus')?.invalid && livestockForm.get('vaccinationStatus')?.touched">
+          Vaccination Status is required
+        </div>
+      </div>
+
+
+      <div class="field-group upload-field">
+
+        <label for="attachment">Attachment</label>
+
+        <div class="upload-box" (click)="fileInput.click()" >
+
+          <input type="file" (change)="handleFileChange($event)" #fileInput hidden id="attachment"/>
+
+          <div *ngIf="!previewImage" class="upload-placeholder">
+
+            <div class="upload-icon">⬆</div>
+
+            <p>
+              Click or Drag Files to Upload <br>
+              <span>(Photos, Records)</span>
+            </p>
+
+            <small>Max 10 MB. Allowed: JPG, PNG</small>
+
+          </div>
+
+          <div *ngIf="previewImage" class="upload-preview">
+
+            <img [src]="previewImage" class="preview-img" alt="previewImage"/>
+
+            <button type="button" class="remove-btn" (click)="removeImage(); $event.stopPropagation()">
+
+              Remove
+
+            </button>
+
+          </div>
+
+        </div>
+
+        <div class="error-text"
+          *ngIf="livestockForm.get('attachment')?.invalid && livestockForm.get('attachment')?.touched && !isEditMode">
+          File is required
+        </div>
+
+      </div>
+
+      <div class="button-row">
+
+        <button type="submit" class="submit-btn">
+          {{ isEditMode ? 'Update Livestock' : 'Submit' }}
+        </button>
+
+        <button type="button" class="cancel-btn" (click)="cancelBtn()">
+          Cancel
+        </button>
+
+      </div>
+
+    </form>
+
+
+    <div class="success-box" *ngIf="showSuccess">
+
+      <p>{{ successMessage }}</p>
+
+      <button class="ok-btn" (click)="closeSuccess()">
+        OK
+      </button>
+
+    </div>
+
+  </div>
+</div>
+<app-footer></app-footer>
