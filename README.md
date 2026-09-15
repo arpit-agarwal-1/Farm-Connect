@@ -1,4 +1,2 @@
 # 66875f97-b288-4661-ac33-979410dbd533-d91d838a-4f0b-4d9a-9f26-a9b98ae4c880
-https://sonar.server.examly.io/dashboard?id=iamneo-production-2_66875f97-b288-4661-ac33-979410dbd533-d91d838a-4f0b-4d9a-9f26-a9b98ae4c880&amp;codeScope=overall
-
 
